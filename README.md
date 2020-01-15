@@ -24,6 +24,7 @@ Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.
 =======
 On GitHub download this repository as a zip file, then extract the files into your own repository.
+<<<<<<< HEAD
 >>>>>>> parent of f72035e... warn to copy dot files in readme
 
 The build is minified and the filenames include the hashes.<br />
@@ -70,3 +71,25 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+=======
+
+## don't touch
+
+the following files students do not need to edit. feel free to read them if you would like.
+
+```
+client/dist/index.html
+client/src/index.js
+client/src/utilities.js
+client/src/client-socket.js
+server/validator.js
+server/server-socket.js
+.babelrc
+.npmrc
+.prettierrc
+package-lock.json
+webpack.config.js
+```
+
+## Good luck on your project :)
+>>>>>>> parent of f72035e... warn to copy dot files in readme
