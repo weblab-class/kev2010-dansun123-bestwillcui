@@ -19,8 +19,12 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 ### `npm run build`
 
+<<<<<<< HEAD
 Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.
+=======
+On GitHub download this repository as a zip file, then extract the files into your own repository.
+>>>>>>> parent of f72035e... warn to copy dot files in readme
 
 The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
