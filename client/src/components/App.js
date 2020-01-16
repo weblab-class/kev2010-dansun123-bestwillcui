@@ -47,6 +47,7 @@ class App extends Component {
   render() {
     return (
       <>
+      <h1>CardBox</h1>
         <Router>
           <Skeleton
             path="/"
