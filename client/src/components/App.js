@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
+import CardRoom from "./pages/CardRoom.js";
+import "./App.css";
 
 import "../utilities.css";
 
@@ -46,8 +48,20 @@ class App extends Component {
 
   render() {
     return (
-      <>
-      <h1>CardBox</h1>
+      <div>
+        <body>
+          <header>
+            <h1>CardBox</h1>
+          </header>
+
+          <main>
+            <h2>Popular Games</h2>
+          </main>
+
+          <footer>
+
+          </footer>
+        </body>
         <Router>
           <Skeleton
             path="/"
@@ -55,10 +69,17 @@ class App extends Component {
             handleLogout={this.handleLogout}
             userId={this.state.userId}
           />
+          <CardRoom
+            path="/cardroom"
+            handleLogin={this.handleLogin}
+            handleLogout={this.handleLogout}
+            userId={this.state.userId}
+          />
+          
           <NotFound default />
         </Router>
         <div>yoyo</div>
-      </>
+      </div>
     );
   }
 }
