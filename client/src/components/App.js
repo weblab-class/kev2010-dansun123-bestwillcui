@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Router } from "@reach/router";
+import { Link, Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
 import CardRoom from "./pages/CardRoom.js";
@@ -49,7 +49,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <body>
+       
           <header>
             <h1>CardBox</h1>
           </header>
@@ -61,22 +61,27 @@ class App extends Component {
           <footer>
 
           </footer>
-        </body>
+
         <Router>
-          <Skeleton
-            path="/"
-            handleLogin={this.handleLogin}
-            handleLogout={this.handleLogout}
-            userId={this.state.userId}
-          />
-          <CardRoom
-            path="/cardroom"
-            handleLogin={this.handleLogin}
-            handleLogout={this.handleLogout}
-            userId={this.state.userId}
-          />
+          <div>
+            <Link to="/cardroom" className="nav">CardRoom</Link>
+            <Switch>
+              <Skeleton
+                exact path="/"
+                handleLogin={this.handleLogin}
+                handleLogout={this.handleLogout}
+                userId={this.state.userId}
+              />
+              <CardRoom
+                path="/cardroom"
+                handleLogin={this.handleLogin}
+                handleLogout={this.handleLogout}
+                userId={this.state.userId}
+              />
           
-          <NotFound default />
+              <NotFound default />
+            </Switch>
+            </div>
         </Router>
         <div>yoyo</div>
       </div>
