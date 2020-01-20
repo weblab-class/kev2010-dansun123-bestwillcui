@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import GoogleLogin, { GoogleLogout } from "react-google-login";
+import './CardRoom.css';
+import WarGame from './WarGame.js';
+import Sandbox from './Sandbox.js'
 
 import "../../utilities.css";
-import "./Skeleton.css";
 
-//TODO: REPLACE WITH YOUR OWN CLIENT_ID
-const GOOGLE_CLIENT_ID = "89738695293-ocu6eiao6gaq5apf7rraqiqpt6tp9rqa.apps.googleusercontent.com";
 
 class CardRoom extends Component {
   constructor(props) {
@@ -20,24 +19,12 @@ class CardRoom extends Component {
 
   render() {
     return (
-      <>
-        {this.props.userId ? (
-          <GoogleLogout
-            clientId={GOOGLE_CLIENT_ID}
-            buttonText="Logout"
-            onLogoutSuccess={this.props.handleLogout}
-            onFailure={(err) => console.log(err)}
-          />
-        ) : (
-          <GoogleLogin
-            clientId={GOOGLE_CLIENT_ID}
-            buttonText="Login"
-            onSuccess={this.props.handleLogin}
-            onFailure={(err) => console.log(err)}
-          />
-        )}
-        <div>cardroom</div>
-      </>
+      <div className="CardRoom">
+        <div className="CardRoom-body">
+          <WarGame> </WarGame>
+          {/* <Sandbox></Sandbox> */}
+        </div>
+      </div>
     );
   }
 }
