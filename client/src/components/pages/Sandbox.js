@@ -99,14 +99,13 @@ class Sandbox extends Component {
 
         this.state = {
             cards: makeDeck(1),
+            player: 0,
             numDecks: 1, //Number of decks being used to play
             deck: makeDeck(1), //Cards in deck
             numDeal: 0,
             numPlayers: 4,  //Number of players at the table
             playerHands: {0: [], 1: [], 2: [], 3: []},  //Hands of Players at the Table
-            posx: 0,
-            posy: 0,
-            itemArray: [],
+
         };
 
         this.TableCanvas = React.createRef()
@@ -144,7 +143,6 @@ class Sandbox extends Component {
             playerHands: newPlayerHands,
             deck: newDeck
         })
-        this.createProject(draw, player)
     }
 
     //Deals by drawing in a forloop
@@ -177,8 +175,22 @@ class Sandbox extends Component {
         event.preventDefault()
     }
 
-    handleSubmit = (event) => {
+    handleDeal = (event) => {
         this.Deal(this.state.numDeal)
+        event.preventDefault()
+    }
+
+    handlePlayerChange = (event) => {
+        let newPlayer = parseInt(event.target.value)
+        if (newPlayer >= 0) {
+            this.setState({player: newPlayer});
+        } else {
+            this.setState({player: 0});
+        }
+        event.preventDefault()
+    }
+
+    handlePlayer = (event) => {
         event.preventDefault()
     }
 
@@ -186,41 +198,17 @@ class Sandbox extends Component {
         console.log(JSON.stringify(this.state))
     }
 
-    dragStart = (event) => {
-        event.preventDefault()
-        this.setState({
-            posx: event.clientX,
-            posy: event.clientY,
-        })
-    }
-
-    dragEnd = (event) => {
-        event.preventDefault()
-        let dx = event.clientX-this.state.posx
-        let dy = event.clientY-this.state.posy
-
-    }
-
-    createProject = (cardNum, playerName) => {
-        const item = this.state.itemArray;
-        const title = numToCard(cardNum)
-        const player = 'p'+playerName.toString()
-        item.push({ title, player })
-        this.setState({itemArray: item})
-    }
-
     render() {
         return (
             <div>
                 {/* <div className = 'deck' src = {CardCover}>yo</div> */}
                 
-                <Draggable><img src={CardCover}/></Draggable>
                 <button onClick = {this.Shuffle} draggable="true">Shuffle</button>
                 <button onClick = {this.Draw.bind(this, 0)}>Draw P0</button>
                 <button onClick = {this.Draw.bind(this, 1)}>Draw P1</button>
                 <button onClick = {this.Draw.bind(this, 2)}>Draw P2</button>
                 <button onClick = {this.Draw.bind(this, 3)}>Draw P3</button>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleDeal}>
                     <label>
                     NumCards
                     <input 
@@ -231,19 +219,33 @@ class Sandbox extends Component {
                     </label>
                     <input type="submit" value="Deal!" />
                 </form>
+                <form onSubmit={this.handlePlayer}>
+                    <label>
+                    Player
+                    <input 
+                        type="text" 
+                        name="numDeal"
+                        value={this.state.player} 
+                        onChange={this.handlePlayerChange} />
+                    </label>
+                    <input type="submit" value="Set Player" />
+                </form>
                 <button onClick = {this.LogState}>Log State</button>
 
                 <div>
-                    {this.state.itemArray.map((item) => {
+                    {this.state.playerHands[this.state.player].map((item) => {
                         return (
-                            <Draggable>
-                                <div className = {item.player}>
-                                    <img src={cardToImage[item.title]} width = '70px' height = '100px'/>
+                            <Draggable id = {item.toString()}> 
+                                <div className = {this.state.player}>
+                                    {console.log(item)}
+                                    <img src={cardToImage[numToCard(item)]} width = '70px' height = '100px'/>
                                 </div>
                             </Draggable>
                         )
                     })}
                 </div>
+
+                
 
             </div>
         )
