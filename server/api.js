@@ -57,6 +57,15 @@ router.post("/games", (req, res) => {
   newGame.save().then((game) => res.send(game))
 });
 
+router.post("/user", (req, res) => {
+  User.findById(req.body.userId).then((user) => {
+    user.username = req.body.username;
+    user.save();
+
+    res.send({ username: user.username });
+  });
+});
+
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

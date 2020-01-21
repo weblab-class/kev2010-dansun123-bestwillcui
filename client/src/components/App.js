@@ -92,7 +92,7 @@ class App extends Component {
           <div>
             <Link to="/cardroom" className="nav">CardRoom 1</Link>
             <Link to="/" className="nav">Lobby</Link>
-            
+            <Link to="/profile" className="nav">Profile</Link>
             <Switch>
               <Lobby
                 exact path="/"
@@ -100,8 +100,10 @@ class App extends Component {
               />
               <CardRoom
                 exact path="/cardroom"
-                handleLogin={this.handleLogin}
-                handleLogout={this.handleLogout}
+                userId={this.state.userId}
+              />
+              <Lobby
+                exact path="/profile"
                 userId={this.state.userId}
               />
               <NotFound default />
