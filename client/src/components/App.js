@@ -5,6 +5,7 @@ import Skeleton from "./pages/Skeleton.js";
 import CardRoom from "./pages/CardRoom.js";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 import Lobby from "./pages/Lobby.js"
+import Profile from "./pages/Profile.js"
 
 import "./App.css";
 
@@ -56,7 +57,7 @@ class App extends Component {
 
     const publicContent = (
       <div>
-        <ul className="navigation">
+        <ul className="topbar">
           <li className="title"><a href="#">CardBox</a></li>
           <li className="login"><a href="#">  
             <GoogleLogin
@@ -75,24 +76,27 @@ class App extends Component {
     const privateContent = (
       <div>
         <navbar>
-          <ul className="navigation">
+          <ul className="topbar">
             <li className="title"><a href="#">CardBox</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">  
-              <GoogleLogout
-                clientId={GOOGLE_CLIENT_ID}
-                buttonText="Logout"
-                onLogoutSuccess={this.handleLogout}
-                onFailure={(err) => console.log(err)}
-              /></a></li>
+            <ul className="navigation">
+              <li className="profile"><a href="./profile">Profile</a></li>
+              <li><a href="#">
+                <GoogleLogout
+                  clientId={GOOGLE_CLIENT_ID}
+                  buttonText="Logout"
+                  onLogoutSuccess={this.handleLogout}
+                  onFailure={(err) => console.log(err)}
+                /></a></li>
+            </ul>
           </ul>
+
+          <h1 className="lobby">Popular Games</h1>
         </navbar>
 
         <Router>
           <div>
             <Link to="/cardroom" className="nav">CardRoom 1</Link>
             <Link to="/" className="nav">Lobby</Link>
-            <Link to="/profile" className="nav">Profile</Link>
             <Switch>
               <Lobby
                 exact path="/"
@@ -102,7 +106,7 @@ class App extends Component {
                 exact path="/cardroom"
                 userId={this.state.userId}
               />
-              <Lobby
+              <Profile
                 exact path="/profile"
                 userId={this.state.userId}
               />
