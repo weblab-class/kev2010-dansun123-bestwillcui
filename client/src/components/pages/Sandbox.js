@@ -203,7 +203,6 @@ class Sandbox extends Component {
         return (
             <div>
                 {/* <div className = 'deck' src = {CardCover}>yo</div> */}
-                
                 <button onClick = {this.Shuffle} draggable="true">Shuffle</button>
                 <button onClick = {this.Draw.bind(this, 0)}>Draw P0</button>
                 <button onClick = {this.Draw.bind(this, 1)}>Draw P1</button>
@@ -235,11 +234,21 @@ class Sandbox extends Component {
 
                 <div>
                     {   
-                        this.state.playerHands[this.state.player].map((item) => {
-                        return (
-                            <Card id = {item} player = {this.state.player} flipped = 'true'></Card>
-                        )
-                    })}
+                        Object.keys(this.state.playerHands).map((playerNum) => {
+                            return (
+                                <div>
+                                    {this.state.playerHands[playerNum].map((item) => {
+                                        return (
+                                            <Card id = {item} player = {this.state.player} flipped = {parseInt(playerNum)===this.state.player}></Card>
+                                        )
+                                    })}
+                                    <br/>
+                                    <br/>
+                                </div>
+    
+                            )
+                        })
+                    }
                 </div>
                 
 
