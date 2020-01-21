@@ -86,7 +86,7 @@ class App extends Component {
 
         <Router>
           <div>
-            <Link to="/cardroom" className="nav">CardRoom</Link>
+            <Link to="/cardroom" className="nav">CardRoom 1</Link>
             <Link to="/" className="nav">Lobby</Link>
             <Switch>
               <Skeleton
@@ -110,7 +110,7 @@ class App extends Component {
 
     return (
       <div>
-          {this.state.userId ? privateContent: publicContent}
+          {!this.state.userId ? privateContent: publicContent}
       </div>
     );
   }

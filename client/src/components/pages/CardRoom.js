@@ -21,8 +21,8 @@ class CardRoom extends Component {
     return (
       <div className="CardRoom">
         <div className="CardRoom-body">
-          <WarGame> </WarGame>
-          {/* <Sandbox></Sandbox> */}
+          {/* <WarGame> </WarGame> */}
+          <Sandbox></Sandbox>
         </div>
       </div>
     );
