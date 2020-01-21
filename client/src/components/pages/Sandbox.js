@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CardDeckImage from './images/deck.png';
 import Cover from './images/cover.png';
-import CardCover from './images/cover.png';
+import CardCover from './images/cardcover.png';
 import './Sandbox.css';
 import deck2C from "./images/Cards/2C.png"
 import deck2D from "./images/Cards/2D.png"
@@ -55,12 +55,14 @@ import deckAC from "./images/Cards/AC.png"
 import deckAD from "./images/Cards/AD.png"
 import deckAH from "./images/Cards/AH.png"
 import deckAS from "./images/Cards/AS.png"
-
+import deckSJ from "./images/Cards/SJ.png"
+import deckBJ from "./images/Cards/BJ.png"
+import Draggable from 'react-draggable';
 
 const num_to_rank = {0: "2", 1: "3", 2: "4", 3: "5", 4: "6", 5: "7", 6: "8", 7: "9", 8: "T", 9: "J", 10: "Q", 11: "K", 12: "A"}
 const rank_to_num = {"2": 0, "3": 1, "4": 2, "5": 3, "6": 4, "7": 5, "8": 6, "9": 7, "T": 8, "J": 9, "Q": 10, "K": 11, "A": 12}
-const num_to_suit = {0: "H", 1: "D", 2: "S", 3: "C"}
-const suit_to_num = {"H": 0, "D": 1, "S": 2, "C": 3}
+const num_to_suit = {0: "C", 1: "D", 2: "H", 3: "S"}
+const suit_to_num = {"C": 0, "D": 1, "H": 2, "S": 3}
 const cardToImage = {
     "2C":deck2C, "2D":deck2D, "2H":deck2H, "2S":deck2S, 
     "3C":deck3C, "3D":deck3D, "3H":deck3H, "3S":deck3S, 
@@ -74,7 +76,7 @@ const cardToImage = {
     "JC":deckJC, "JD":deckJD, "JH":deckJH, "JS":deckJS, 
     "QC":deckQC, "QD":deckQD, "QH":deckQH, "QS":deckQS, 
     "KC":deckKC, "KD":deckKD, "KH":deckKH, "KS":deckKS, 
-    "AC":deckAC, "AD":deckAD, "AH":deckAH, "AS":deckAS, 
+    "AC":deckAC, "AD":deckAD, "AH":deckAH, "AS":deckAS,
 }
 
 function makeDeck(numDecks) {
@@ -86,7 +88,9 @@ function makeDeck(numDecks) {
     return deck
 }
 
-
+function numToCard(cardNumber) {
+    return num_to_rank[cardNumber%13]+num_to_suit[Math.floor(cardNumber/13)%4]
+}
 
 
 class Sandbox extends Component {
@@ -99,7 +103,10 @@ class Sandbox extends Component {
             deck: makeDeck(1), //Cards in deck
             numDeal: 0,
             numPlayers: 4,  //Number of players at the table
-            playerHands: {0: [], 1: [], 2: [], 3: []}  //Hands of Players at the Table
+            playerHands: {0: [], 1: [], 2: [], 3: []},  //Hands of Players at the Table
+            posx: 0,
+            posy: 0,
+            itemArray: [],
         };
 
         this.TableCanvas = React.createRef()
@@ -137,6 +144,7 @@ class Sandbox extends Component {
             playerHands: newPlayerHands,
             deck: newDeck
         })
+        this.createProject(draw, player)
     }
 
     //Deals by drawing in a forloop
@@ -178,17 +186,40 @@ class Sandbox extends Component {
         console.log(JSON.stringify(this.state))
     }
 
+    dragStart = (event) => {
+        event.preventDefault()
+        this.setState({
+            posx: event.clientX,
+            posy: event.clientY,
+        })
+    }
+
+    dragEnd = (event) => {
+        event.preventDefault()
+        let dx = event.clientX-this.state.posx
+        let dy = event.clientY-this.state.posy
+
+    }
+
+    createProject = (cardNum, playerName) => {
+        const item = this.state.itemArray;
+        const title = numToCard(cardNum)
+        const player = 'p'+playerName.toString()
+        item.push({ title, player })
+        this.setState({itemArray: item})
+    }
+
     render() {
         return (
             <div>
                 {/* <div className = 'deck' src = {CardCover}>yo</div> */}
                 
-                <div className = 'card'><img src={CardCover} draggable = 'true' /> </div>
+                <Draggable><img src={CardCover}/></Draggable>
                 <button onClick = {this.Shuffle} draggable="true">Shuffle</button>
-                <button onClick = {this.Draw.bind(this, 0)}>Draw P1</button>
-                <button onClick = {this.Draw.bind(this, 1)}>Draw P2</button>
-                <button onClick = {this.Draw.bind(this, 2)}>Draw P3</button>
-                <button onClick = {this.Draw.bind(this, 3)}>Draw P4</button>
+                <button onClick = {this.Draw.bind(this, 0)}>Draw P0</button>
+                <button onClick = {this.Draw.bind(this, 1)}>Draw P1</button>
+                <button onClick = {this.Draw.bind(this, 2)}>Draw P2</button>
+                <button onClick = {this.Draw.bind(this, 3)}>Draw P3</button>
                 <form onSubmit={this.handleSubmit}>
                     <label>
                     NumCards
@@ -201,6 +232,19 @@ class Sandbox extends Component {
                     <input type="submit" value="Deal!" />
                 </form>
                 <button onClick = {this.LogState}>Log State</button>
+
+                <div>
+                    {this.state.itemArray.map((item) => {
+                        return (
+                            <Draggable>
+                                <div className = {item.player}>
+                                    <img src={cardToImage[item.title]} width = '70px' height = '100px'/>
+                                </div>
+                            </Draggable>
+                        )
+                    })}
+                </div>
+
             </div>
         )
     }
