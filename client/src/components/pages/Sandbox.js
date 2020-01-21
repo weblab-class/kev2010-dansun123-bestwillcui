@@ -58,6 +58,7 @@ import deckAS from "./images/Cards/AS.png"
 import deckSJ from "./images/Cards/SJ.png"
 import deckBJ from "./images/Cards/BJ.png"
 import Draggable from 'react-draggable';
+import Card from './Card.js'
 
 const num_to_rank = {0: "2", 1: "3", 2: "4", 3: "5", 4: "6", 5: "7", 6: "8", 7: "9", 8: "T", 9: "J", 10: "Q", 11: "K", 12: "A"}
 const rank_to_num = {"2": 0, "3": 1, "4": 2, "5": 3, "6": 4, "7": 5, "8": 6, "9": 7, "T": 8, "J": 9, "Q": 10, "K": 11, "A": 12}
@@ -182,7 +183,7 @@ class Sandbox extends Component {
 
     handlePlayerChange = (event) => {
         let newPlayer = parseInt(event.target.value)
-        if (newPlayer >= 0) {
+        if (newPlayer >= 0 && newPlayer < this.state.numPlayers) {
             this.setState({player: newPlayer});
         } else {
             this.setState({player: 0});
@@ -233,17 +234,14 @@ class Sandbox extends Component {
                 <button onClick = {this.LogState}>Log State</button>
 
                 <div>
-                    {this.state.playerHands[this.state.player].map((item) => {
+                    {   
+                        this.state.playerHands[this.state.player].map((item) => {
                         return (
-                            <Draggable id = {item.toString()}> 
-                                <div className = {this.state.player}>
-                                    {console.log(item)}
-                                    <img src={cardToImage[numToCard(item)]} width = '70px' height = '100px'/>
-                                </div>
-                            </Draggable>
+                            <Card id = {item} player = {this.state.player} flipped = 'true'></Card>
                         )
                     })}
                 </div>
+                
 
                 
 
