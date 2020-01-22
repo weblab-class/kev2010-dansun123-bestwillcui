@@ -71,6 +71,30 @@ router.post("/username", (req, res) => {
   });
 });
 
+router.post("/profile", (req, res) => {
+  User.findById(req.body.userId).then((user) => {
+    user.profile = req.body.profile;
+    user.save();
+    res.send({ profile: user.profile });
+  });
+});
+
+router.post("/image", (req, res) => {
+  User.findById(req.body.userId).then((user) => {
+    user.image = req.body.image;
+    user.save();
+    res.send({ image: user.image });
+  });
+});
+
+// router.post("/games", (req, res) => {
+//   User.findById(req.body.userId).then((user) => {
+//     user.games: user.games.push(new Game());
+//     user.save();
+//     res.send({ username: user.username });
+//   });
+// });
+
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
