@@ -57,11 +57,16 @@ router.post("/games", (req, res) => {
   newGame.save().then((game) => res.send(game))
 });
 
-router.post("/user", (req, res) => {
+router.get("/user", (req, res) => {
+  User.findById(req.query.userid).then((user) => {
+    res.send(user);
+  });
+});
+
+router.post("/username", (req, res) => {
   User.findById(req.body.userId).then((user) => {
     user.username = req.body.username;
     user.save();
-
     res.send({ username: user.username });
   });
 });

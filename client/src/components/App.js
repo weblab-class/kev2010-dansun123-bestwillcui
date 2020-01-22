@@ -5,6 +5,7 @@ import Skeleton from "./pages/Skeleton.js";
 import CardRoom from "./pages/CardRoom.js";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 import Lobby from "./pages/Lobby.js"
+import Profile from "./pages/Profile.js"
 
 import "./App.css";
 
@@ -26,6 +27,7 @@ class App extends Component {
     super(props);
     this.state = {
       userId: undefined,
+      username: undefined
     };
   }
 
@@ -33,7 +35,7 @@ class App extends Component {
     get("/api/whoami").then((user) => {
       if (user._id) {
         // they are registed in the database, and currently logged in.
-        this.setState({ userId: user._id });
+        this.setState({ userId: user._id, username: user.username });
       }
     });
   }
@@ -42,13 +44,13 @@ class App extends Component {
     console.log(`Logged in as ${res.profileObj.name}`);
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
-      this.setState({ userId: user._id });
+      this.setState({ userId: user._id , username: user.username});
       post("/api/initsocket", { socketid: socket.id });
     });
   };
 
   handleLogout = () => {
-    this.setState({ userId: undefined });
+    this.setState({ userId: undefined, username: undefined});
     post("/api/logout");
   };
 
@@ -102,9 +104,10 @@ class App extends Component {
                 exact path="/cardroom"
                 userId={this.state.userId}
               />
-              <Lobby
+              <Profile
                 exact path="/profile"
                 userId={this.state.userId}
+                username = {this.state.username}
               />
               <NotFound default />
             </Switch>
@@ -115,7 +118,7 @@ class App extends Component {
 
     return (
       <div>
-          {!this.state.userId ? privateContent: publicContent}
+          {this.state.userId ? privateContent: publicContent}
       </div>
     );
   }

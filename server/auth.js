@@ -26,7 +26,10 @@ function getOrCreateUser(user) {
     const newUser = new User({
       name: user.name,
       googleid: user.sub,
-      username: 'default',
+      username: user.name+Math.random().toString(),
+      profile: 'User has not yet updated profile',
+      games: [],
+      image: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
     });
 
     return newUser.save();
