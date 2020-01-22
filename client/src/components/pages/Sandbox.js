@@ -203,6 +203,7 @@ class Sandbox extends Component {
         return (
             <div>
                 {/* <div className = 'deck' src = {CardCover}>yo</div> */}
+                <div>Player {this.state.player}</div>
                 <button onClick = {this.Shuffle} draggable="true">Shuffle</button>
                 <button onClick = {this.Draw.bind(this, 0)}>Draw P0</button>
                 <button onClick = {this.Draw.bind(this, 1)}>Draw P1</button>

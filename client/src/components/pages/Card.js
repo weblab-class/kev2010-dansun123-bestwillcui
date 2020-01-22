@@ -90,6 +90,12 @@ class Card extends Component {
         suit: num_to_suit[Math.floor(id/13)%4],
       };
     }
+
+    flip = () => {
+      this.setState({
+        flipped: !this.state.flipped
+      })
+    }
   
     componentDidMount() {
       // remember -- api calls go here!
@@ -104,7 +110,7 @@ class Card extends Component {
         //     <WarGame> </WarGame>
         //   </div>
         // </div>
-        <div>
+        <div onDoubleClick = {this.flip}>
           <Draggable>
             {this.state.flipped ? front : back}
           </Draggable>
