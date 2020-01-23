@@ -78,9 +78,10 @@ class App extends Component {
       <div>
         <navbar>
           <ul className="topbar">
-            <li className="title"><a href="#">CardBox</a></li>
+            <li className="title"><a href="/lobby">CardBox</a></li>
             <ul className="navigation">
-              <li className="profile"><a href="./profile">Profile</a></li>
+              {/* <li className="tab"><a href="./lobby">Lobby</a></li> */}
+              <li className="tab"><a href="./profile">Profile</a></li>
               <li><a href="#">
                 <GoogleLogout
                   clientId={GOOGLE_CLIENT_ID}
@@ -90,8 +91,6 @@ class App extends Component {
                 /></a></li>
             </ul>
           </ul>
-
-          <h1 className="lobby">Lobby</h1>
         </navbar>
 
         <Router>

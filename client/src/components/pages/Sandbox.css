@@ -44,7 +44,7 @@
     position: relative;
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
+    display: inline-flex;
     flex-flow: row wrap;
     justify-content: space-around;
     -webkit-box-orient: horizontal;
@@ -55,14 +55,14 @@
     -ms-flex-align: stretch;
     align-items: stretch;
     width: 100%!important;
-    padding: 0;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
 }
 
 .column {
     display: flex;
     flex-flow: row wrap;
-    justify-content: center;
 }
 
+.player {
+    display: inline-block;
+    margin-top: 7rem;
+}

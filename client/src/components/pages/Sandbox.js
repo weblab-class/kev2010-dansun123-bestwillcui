@@ -248,7 +248,7 @@ class Sandbox extends Component {
                 <div className="row">
                     <div className="column"></div>
                     <div className="column">
-                        <h3>Player 3</h3>
+                        <h3 className="player">Player 3</h3>
                     </div>
                     <div className="column">
                         {this.state.playerHands[4].map((item) => {
@@ -258,7 +258,7 @@ class Sandbox extends Component {
                         })}
                     </div>
                     <div className="column">
-                        <h3>Player 5</h3>   
+                        <h3 className="player">Player 5</h3>   
                     </div>
                     <div className="column"></div>
                 </div>
@@ -285,13 +285,13 @@ class Sandbox extends Component {
 
                 <div className="row">
                     <div className="column">
-                        <h3>Player 2</h3>
+                        <h3 className="player">Player 2</h3>
                     </div>
                     <div className="column"></div>
                     <div className="column"></div>
                     <div className="column"></div>
                     <div className="column">
-                        <h3>Player 6</h3>
+                        <h3 className="player">Player 6</h3>
                     </div>
                 </div>
 
@@ -318,11 +318,11 @@ class Sandbox extends Component {
                 <div className="row">
                     <div className="column"></div>
                     <div className="column">
-                        <h3>Player 1</h3>
+                        <h3 className="player">Player 1</h3>
                     </div>
                     <div className="column"></div>
                     <div className="column">
-                        <h3>Player 7</h3>
+                        <h3 className="player">Player 7</h3>
                     </div>
                     <div className="column"></div>
                 </div>
@@ -337,7 +337,7 @@ class Sandbox extends Component {
                         })}
                     </div>
                     <div className="column">
-                        <h3>Player 0</h3>
+                        <h3 className="player">Player 0</h3>
                     </div>
                     <div className="column">
                         {this.state.playerHands[7].map((item) => {
