@@ -104,8 +104,8 @@ class Sandbox extends Component {
             numDecks: 1, //Number of decks being used to play
             deck: makeDeck(1), //Cards in deck
             numDeal: 0,
-            numPlayers: 4,  //Number of players at the table
-            playerHands: {0: [], 1: [], 2: [], 3: []},  //Hands of Players at the Table
+            numPlayers: 8,  //Number of players at the table
+            playerHands: {0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: []},  //Hands of Players at the Table
 
         };
 
@@ -233,11 +233,141 @@ class Sandbox extends Component {
                 </form>
                 <button onClick = {this.LogState}>Log State</button>
 
-                <div>
+
+
+                <div className="row">
+                    <div className="column"></div>
+                    <div className="column"></div>
+                    <div className="column">
+                        <h3>Player 4</h3>
+                    </div>
+                    <div className="column"></div>
+                    <div className="column"></div>
+                </div>
+
+                <div className="row">
+                    <div className="column"></div>
+                    <div className="column">
+                        <h3>Player 3</h3>
+                    </div>
+                    <div className="column">
+                        {this.state.playerHands[4].map((item) => {
+                            return (
+                                <Card id = {item} player = {this.state.player} flipped = {parseInt(4)===this.state.player}></Card>
+                            )
+                        })}
+                    </div>
+                    <div className="column">
+                        <h3>Player 5</h3>   
+                    </div>
+                    <div className="column"></div>
+                </div>
+
+                <div className="row">
+                    <div className="column"></div>
+                    <div className="column">
+                        {this.state.playerHands[3].map((item) => {
+                            return (
+                                <Card id = {item} player = {this.state.player} flipped = {parseInt(3)===this.state.player}></Card>
+                            )
+                        })}
+                    </div>
+                    <div className="column"></div>
+                    <div className="column">
+                        {this.state.playerHands[5].map((item) => {
+                            return (
+                                <Card id = {item} player = {this.state.player} flipped = {parseInt(5)===this.state.player}></Card>
+                            )
+                        })}
+                    </div>
+                    <div className="column"></div>
+                </div>
+
+                <div className="row">
+                    <div className="column">
+                        <h3>Player 2</h3>
+                    </div>
+                    <div className="column"></div>
+                    <div className="column"></div>
+                    <div className="column"></div>
+                    <div className="column">
+                        <h3>Player 6</h3>
+                    </div>
+                </div>
+
+                <div className="row">
+                    <div className="column">
+                        {this.state.playerHands[2].map((item) => {
+                            return (
+                                <Card id = {item} player = {this.state.player} flipped = {parseInt(2)===this.state.player}></Card>
+                            )
+                        })}
+                    </div>
+                    <div className="column"></div>
+                    <div className="column"></div>
+                    <div className="column"></div>
+                    <div className="column">
+                        {this.state.playerHands[6].map((item) => {
+                            return (
+                                <Card id = {item} player = {this.state.player} flipped = {parseInt(6)===this.state.player}></Card>
+                            )
+                        })}
+                    </div>
+                </div>
+
+                <div className="row">
+                    <div className="column"></div>
+                    <div className="column">
+                        <h3>Player 1</h3>
+                    </div>
+                    <div className="column"></div>
+                    <div className="column">
+                        <h3>Player 7</h3>
+                    </div>
+                    <div className="column"></div>
+                </div>
+
+                <div className="row">
+                    <div className="column"></div>
+                    <div className="column">
+                        {this.state.playerHands[1].map((item) => {
+                            return (
+                                <Card id = {item} player = {this.state.player} flipped = {parseInt(1)===this.state.player}></Card>
+                            )
+                        })}
+                    </div>
+                    <div className="column">
+                        <h3>Player 0</h3>
+                    </div>
+                    <div className="column">
+                        {this.state.playerHands[7].map((item) => {
+                            return (
+                                <Card id = {item} player = {this.state.player} flipped = {parseInt(7)===this.state.player}></Card>
+                            )
+                        })}
+                    </div>
+                    <div className="column"></div>
+                </div>
+
+                <div className="row">
+                    <div className="column"></div>
+                    <div className="column"></div>
+                    <div className="column">
+                        {this.state.playerHands[0].map((item) => {
+                            return (
+                                <Card id = {item} player = {this.state.player} flipped = {parseInt(0)===this.state.player}></Card>
+                            )
+                        })}
+                    </div>
+                    <div className="column"></div>
+                    <div className="column"></div>
+                </div>
+
+                {/* <div>
                     {   
                         Object.keys(this.state.playerHands).map((playerNum) => {
                             return (
-                                <div>
+                                <div className="hand">
                                     {this.state.playerHands[playerNum].map((item) => {
                                         return (
                                             <Card id = {item} player = {this.state.player} flipped = {parseInt(playerNum)===this.state.player}></Card>
@@ -250,7 +380,7 @@ class Sandbox extends Component {
                             )
                         })
                     }
-                </div>
+                </div> */}
                 
 
                 

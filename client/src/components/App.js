@@ -91,7 +91,7 @@ class App extends Component {
             </ul>
           </ul>
 
-          <h1 className="lobby">Popular Games</h1>
+          <h1 className="lobby">Lobby</h1>
         </navbar>
 
         <Router>
@@ -121,7 +121,7 @@ class App extends Component {
 
     return (
       <div>
-          {this.state.userId ? privateContent: publicContent}
+          {!this.state.userId ? privateContent: publicContent}
       </div>
     );
   }
