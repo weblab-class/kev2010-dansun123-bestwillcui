@@ -14,6 +14,7 @@ class Lobby extends Component {
     let theState = props.state;
     theState.cardrooms = [];
     theState.selected_room = "";
+    theState.createGroup = False;
     this.state = theState;
 
     this.loadGames = () => {
@@ -24,6 +25,10 @@ class Lobby extends Component {
           cardrooms: cardrooms
         })
       })
+    }
+
+    this.joinRoom = () => {
+
     }
 
     this.createRoom = () => {
@@ -39,6 +44,9 @@ class Lobby extends Component {
   }
 
   render() {
+
+
+
     return (
         <div>
           <h1 className="lobby">Lobby</h1>
@@ -75,7 +83,11 @@ class Lobby extends Component {
             <button className="join" onClick = {this.loadGames}>Load Lobby!</button>
           </div>
 
+          <div className="bot">
+            <button className="join" onClick = {this.updateCreateGroup}>Create Room!</button>
+          </div>
 
+          {this.state.createGroup ? <createGroup cancelSubmit = {this.updateCreateGroup} joinRoom = {this.joinRoom}></createGroup> : <div></div>}
           
         </div>
     );
