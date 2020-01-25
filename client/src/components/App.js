@@ -27,6 +27,7 @@ class App extends Component {
     this.state = {
       userId: undefined, 
       user: undefined, 
+      name: undefined,
       username: undefined, 
       profile: undefined, 
       games: undefined, 
@@ -49,6 +50,7 @@ class App extends Component {
         this.setState({ 
           userId: user._id, 
           user: user, 
+          name: user.name,
           username: user.username, 
           profile: user.profile, 
           games: user.games, 
@@ -118,8 +120,7 @@ class App extends Component {
             <Switch>
               <Lobby
                 exact path="/"
-                userId={this.state.userId}
-                username={this.state.username}
+                state= {this.state}
               />
               <CardRoom
                 exact path="/cardroom"

@@ -11,13 +11,13 @@ class Lobby extends Component {
   constructor(props) {
     super(props);
     // Initialize Default State
-    this.state = {
-      cardrooms: [],
-
-    };
+    this.state = props.state;
+    this.setState({
+      cardrooms: []
+    })
 
     this.loadGames = () => {
-      console.log("HOLD UP"+ this.props.username)
+      console.log("HOLD UP"+ this.state.username)
       get('/api/cardrooms').then((cardrooms) => {
         console.log(cardrooms)
         this.setState({
@@ -27,7 +27,7 @@ class Lobby extends Component {
     }
 
     this.createRoom = () => {
-      post('/api/cardroom', {title: "Test", description: "first game test!", creator_id: this.props.userId}).then((cardroom) => {
+      post('/api/cardroom', {title: "Test", description: "first game test!", username: this.state.username, name: this.state.name, creator_id: this.state.userId}).then((cardroom) => {
         console.log(JSON.stringify(cardroom))
       })
     }
