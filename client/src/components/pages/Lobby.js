@@ -11,10 +11,10 @@ class Lobby extends Component {
   constructor(props) {
     super(props);
     // Initialize Default State
-    this.state = props.state;
-    this.setState({
-      cardrooms: []
-    })
+    let theState = props.state;
+    theState.cardrooms = [];
+    theState.selected_room = "";
+    this.state = theState;
 
     this.loadGames = () => {
       console.log("HOLD UP"+ this.state.username)
@@ -35,6 +35,7 @@ class Lobby extends Component {
 
   componentDidMount() {
     // remember -- api calls go here!
+    this.loadGames()
   }
 
   render() {
@@ -51,13 +52,19 @@ class Lobby extends Component {
                 <th>Capacity</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>CardRoom 1</td>
-                <td>DanSun69</td>
-                <td>1/8</td>
-              </tr>
-            </tbody>
+            {   
+                this.state.cardrooms.map((cardroom) => {
+                    return (
+                      <tbody>
+                        <tr>
+                          <td>{cardroom.title}</td>
+                          <td>{cardroom.host.username}</td>
+                          <td>{cardroom.players.length}/8</td>
+                        </tr>
+                      </tbody>
+                    )
+                })
+            }
           </table>
 
           <div className="bot">
