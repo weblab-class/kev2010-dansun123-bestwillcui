@@ -7,25 +7,16 @@ import "./Profile.css";
 class Profile extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-        tempName: '',
-        tempProfile: '',
-        tempGames: [],
-    };
+    this.state = props.state
+    this.setState({
+      tempName: '',
+      tempProfile: '',
+      tempImage: '',
+    })
   }
 
   componentDidMount() {
     document.title = "Profile Page";
-    get(`/api/user`, { userid: this.props.userId }).then((user) => this.setState({ 
-        user: user , 
-        username: user.username, 
-        profile: user.profile, 
-        games: user.games, 
-        image: user.image,
-    }));
-    get('/api/tester', {}).then((user) => {
-      console.log(user)
-    })
   }
 
   handleUsernameChange = (event) => {
@@ -36,10 +27,12 @@ class Profile extends Component {
   }
 
   handleUsernameSubmit = (event) => {
-    post("/api/username", {userId: this.props.userId, username: this.state.tempName}).then((res) => {
+    alert(this.state.tempName+this.state.username)
+    post("/api/username", {userId: this.state.userId, username: this.state.tempName}).then((res) => {
         this.setState({
             username: res.username
         })
+        this.props.updateUsername(res.username)
       });
     event.preventDefault()
   };
@@ -52,11 +45,11 @@ class Profile extends Component {
     }
 
   handleProfileSubmit = (event) => {
-    post("/api/profile", {userId: this.props.userId, profile: this.state.tempProfile}).then((res) => {
+    post("/api/profile", {userId: this.state.userId, profile: this.state.tempProfile}).then((res) => {
         this.setState({
             profile: res.profile
         })
-        });
+      });
     event.preventDefault()
   };
 
@@ -69,7 +62,7 @@ class Profile extends Component {
   }
 
   handleImageSubmit = (event) => {
-    post("/api/image", {userId: this.props.userId, image: this.state.tempImage}).then((res) => {
+    post("/api/image", {userId: this.state.userId, image: this.state.tempImage}).then((res) => {
         this.setState({
             image: res.image
         })

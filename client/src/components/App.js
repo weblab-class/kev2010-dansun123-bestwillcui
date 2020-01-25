@@ -17,7 +17,6 @@ import { get, post } from "../utilities";
 
 const GOOGLE_CLIENT_ID = "89738695293-ocu6eiao6gaq5apf7rraqiqpt6tp9rqa.apps.googleusercontent.com";
 
-
 /**
  * Define the "App" component as a class.
  */
@@ -26,16 +25,35 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: undefined,
-      username: undefined
+      userId: undefined, 
+      user: undefined, 
+      username: undefined, 
+      profile: undefined, 
+      games: undefined, 
+      image: undefined,
     };
+
+
+    this.updateUsername = (new_username) => {
+      this.setState({
+        username: new_username
+      })
+    }
   }
 
   componentDidMount() {
     get("/api/whoami").then((user) => {
+      //populate user information
       if (user._id) {
         // they are registed in the database, and currently logged in.
-        this.setState({ userId: user._id, username: user.username });
+        this.setState({ 
+          userId: user._id, 
+          user: user, 
+          username: user.username, 
+          profile: user.profile, 
+          games: user.games, 
+          image: user.image,
+        });
       }
     });
   }
@@ -110,8 +128,8 @@ class App extends Component {
               />
               <Profile
                 exact path="/profile"
-                userId={this.state.userId}
-                username = {this.state.username}
+                state = {this.state}
+                updateUsername = {this.updateUsername}
               />
               <NotFound default />
             </Switch>
