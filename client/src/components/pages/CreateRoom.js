@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 
 
-export default function Login(props) {
+export default function CreateRoom(props) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
   
@@ -11,14 +11,14 @@ export default function Login(props) {
     }
   
     function handleSubmit(event) {
-      var path = 0
-      
-  
+      props.createRoom(title, description)
       event.preventDefault();
     }
 
     function cancelSubmit(event) {
-        
+        setTitle("")
+        setDescription("")
+        props.cancelSubmit()
         event.preventDefault()
     }
   
