@@ -11,7 +11,8 @@ const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
-const Game = require("./models/game")
+const Cardroom = require("./models/cardroom")
+const Message = require("./models/message")
 
 // import authentication library
 const auth = require("./auth");
@@ -43,18 +44,32 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 
 
-router.get("/games", (req, res) => {
-  Game.find({}).then((games) => {
-    res.send(games);
+
+router.get("/cardrooms", (req, res) => {
+  console.log(req.body.name)
+  // res.send(['balh'])
+  Cardroom.find({}).then((cardrooms) => {
+    res.send(cardrooms);
   });
 });
 
-router.post("/games", (req, res) => {
-  const newGame = new Game({
-    title: req.body.content,
-    creator_name: req.user.name,
+router.get("/cardroom", (req, res) => {
+  console.log(req.body.cardroom_id)
+  Cardroom.find({cardroom_id: req.body.cardroom_id}).then((cardroom) => {
+    res.send(cardroom)
+  })
+})
+
+router.post("/cardroom", (req, res) => {
+  const newCardroom = new Cardroom({
+    title: req.body.title,
+    description: req.body.description,
+    creator_id: req.body.creator_id,
+    host: req.body.username,
+    cardroom_id: req.body.creator_id+req.body.title,
+    players: [req.body.creator_id],
   }) 
-  newGame.save().then((game) => res.send(game))
+  newCardroom.save().then((cardroom) => res.send(cardroom))
 });
 
 router.get("/user", (req, res) => {
@@ -62,6 +77,10 @@ router.get("/user", (req, res) => {
     res.send(user);
   });
 });
+
+router.get("/tester", (req, res) => {
+  res.send({test:"TEST"})
+})
 
 router.post("/username", (req, res) => {
   User.findById(req.body.userId).then((user) => {
@@ -86,14 +105,6 @@ router.post("/image", (req, res) => {
     res.send({ image: user.image });
   });
 });
-
-// router.post("/games", (req, res) => {
-//   User.findById(req.body.userId).then((user) => {
-//     user.games: user.games.push(new Game());
-//     user.save();
-//     res.send({ username: user.username });
-//   });
-// });
 
 
 // anything else falls to this "not found" case

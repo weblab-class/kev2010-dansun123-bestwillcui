@@ -23,6 +23,9 @@ class Profile extends Component {
         games: user.games, 
         image: user.image,
     }));
+    get('/api/tester', {}).then((user) => {
+      console.log(user)
+    })
   }
 
   handleUsernameChange = (event) => {

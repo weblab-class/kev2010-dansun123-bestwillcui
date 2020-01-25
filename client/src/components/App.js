@@ -101,10 +101,12 @@ class App extends Component {
               <Lobby
                 exact path="/"
                 userId={this.state.userId}
+                username={this.state.username}
               />
               <CardRoom
                 exact path="/cardroom"
                 userId={this.state.userId}
+                username = {this.state.username}
               />
               <Profile
                 exact path="/profile"
@@ -120,7 +122,7 @@ class App extends Component {
 
     return (
       <div>
-          {!this.state.userId ? privateContent: publicContent}
+          {this.state.userId ? privateContent: publicContent}
       </div>
     );
   }

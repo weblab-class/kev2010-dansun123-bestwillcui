@@ -3,6 +3,7 @@ import GoogleLogin, { GoogleLogout } from "react-google-login";
 
 import "../../utilities.css";
 import "./Lobby.css";
+import { get, post } from "../../utilities";
 
 //TODO: REPLACE WITH YOUR OWN CLIENT_ID
 
@@ -10,7 +11,26 @@ class Lobby extends Component {
   constructor(props) {
     super(props);
     // Initialize Default State
-    this.state = {};
+    this.state = {
+      cardrooms: [],
+
+    };
+
+    this.loadGames = () => {
+      console.log("HOLD UP"+ this.props.username)
+      get('/api/cardrooms').then((cardrooms) => {
+        console.log(cardrooms)
+        this.setState({
+          cardrooms: cardrooms
+        })
+      })
+    }
+
+    this.createRoom = () => {
+      post('/api/cardroom', {title: "Test", description: "first game test!", creator_id: this.props.userId}).then((cardroom) => {
+        console.log(JSON.stringify(cardroom))
+      })
+    }
   }
 
   componentDidMount() {
@@ -41,7 +61,17 @@ class Lobby extends Component {
           </table>
 
           <div className="bot">
-            <button className="join">Join!</button>
+            <button className="join" onClick = {this.joinRoom}>Join!</button>
+          </div>
+
+          <div className="bot">
+            <button className="join" onClick = {this.loadGames}>Load Lobby!</button>
+          </div>
+
+
+
+          <div className = "bot">
+            <button className="createRoom" onClick = {this.createRoom}>Create Room!</button>
           </div>
         </div>
     );
