@@ -76,10 +76,7 @@ class Lobby extends Component {
           </div>
 
 
-
-          <div className = "bot">
-            <button className="createRoom" onClick = {this.createRoom}>Create Room!</button>
-          </div>
+          
         </div>
     );
   }

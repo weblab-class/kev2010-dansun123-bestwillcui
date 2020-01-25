@@ -7,12 +7,11 @@ import "./Profile.css";
 class Profile extends Component {
   constructor(props) {
     super(props);
+    let theState = props.state
+    theState.tempName = ''
+    theState.tempProfile = ''
+    theState.tempImage = ''
     this.state = props.state
-    this.setState({
-      tempName: '',
-      tempProfile: '',
-      tempImage: '',
-    })
   }
 
   componentDidMount() {
