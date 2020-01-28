@@ -28,17 +28,10 @@ class Lobby extends Component {
       })
     }
 
-    this.createRoom = (title, description) => {
-      post('/api/cardroom', {title: title, description: description, username: this.state.username, name: this.state.name, creator_id: this.state.userId}).then((cardroom) => {
+    this.createRoom = () => {
+      post('/api/cardroom', {title: "Test", description: "first game test!", username: this.state.username, name: this.state.name, creator_id: this.state.userId}).then((cardroom) => {
         console.log(JSON.stringify(cardroom))
       })
-    }
-
-    this.updateCreateGroup = () => {
-      this.setState((prevState) => ({
-        createGroup: !prevState.createGroup
-      }))
-      console.log(this.state.createGroup)
     }
   }
 
@@ -49,6 +42,19 @@ class Lobby extends Component {
 
   render() {
     return (
+        // <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        // <script>
+        //     $( document ).ready(function() {
+        //         //collapse and expand sections
+
+        //         //$('.breakrow').click(function(){
+        //         $('.breakrow').click(function(){
+        //             $(this).nextUntil('tr.breakrow').slideToggle(200);
+        //         });
+        //     });
+        // </script>
+
         <div>
           <h1 className="lobby">Lobby</h1>
           <hr className="hr"></hr>
@@ -97,10 +103,6 @@ class Lobby extends Component {
 
           <div className="bot">
             <button className="join" onClick = {this.loadGames}>Load Lobby!</button>
-          </div>
-
-          <div className="bot">
-            <button className="join" onClick = {this.updateCreateGroup}>Create Room!</button>
           </div>
 
           
