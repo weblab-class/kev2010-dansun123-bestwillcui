@@ -4,6 +4,7 @@ import GoogleLogin, { GoogleLogout } from "react-google-login";
 import "../../utilities.css";
 import "./Lobby.css";
 import { get, post } from "../../utilities";
+import CreateRoom from "./CreateRoom.js"
 
 //TODO: REPLACE WITH YOUR OWN CLIENT_ID
 
@@ -14,6 +15,7 @@ class Lobby extends Component {
     let theState = props.state;
     theState.cardrooms = [];
     theState.selected_room = "";
+    theState.createGroup = false;
     this.state = theState;
 
     this.loadGames = () => {
@@ -40,6 +42,19 @@ class Lobby extends Component {
 
   render() {
     return (
+        // <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        // <script>
+        //     $( document ).ready(function() {
+        //         //collapse and expand sections
+
+        //         //$('.breakrow').click(function(){
+        //         $('.breakrow').click(function(){
+        //             $(this).nextUntil('tr.breakrow').slideToggle(200);
+        //         });
+        //     });
+        // </script>
+
         <div>
           <h1 className="lobby">Lobby</h1>
           <hr className="hr"></hr>
@@ -52,19 +67,34 @@ class Lobby extends Component {
                 <th>Capacity</th>
               </tr>
             </thead>
-            {   
+            <tbody>
+              {   
                 this.state.cardrooms.map((cardroom) => {
                     return (
-                      <tbody>
-                        <tr>
-                          <td>{cardroom.title}</td>
-                          <td>{cardroom.host.username}</td>
-                          <td>{cardroom.players.length}/8</td>
-                        </tr>
-                      </tbody>
+                      <tr>
+                        <td>{cardroom.title}</td>
+                        <td>{cardroom.host.username}</td>
+                        <td>{cardroom.players.length}/8</td>
+                      </tr>
                     )
                 })
-            }
+              }
+              <tr>
+                <td>another</td>
+                <td>anOTHER!</td>
+                <td>2/8</td>
+              </tr>
+              <tr>
+                <td>another</td>
+                <td>anOTHER!</td>
+                <td>2/8</td>
+              </tr>
+              <tr>
+                <td>another</td>
+                <td>anOTHER!</td>
+                <td>2/8</td>
+              </tr>
+            </tbody>
           </table>
 
           <div className="bot">
@@ -75,8 +105,8 @@ class Lobby extends Component {
             <button className="join" onClick = {this.loadGames}>Load Lobby!</button>
           </div>
 
-
           
+          {this.state.createGroup ? <CreateRoom cancelSubmit = {this.updateCreateGroup} createRoom = {this.createRoom}></CreateRoom> : <div></div>}
         </div>
     );
   }
