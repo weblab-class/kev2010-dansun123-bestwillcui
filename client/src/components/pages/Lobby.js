@@ -4,6 +4,7 @@ import GoogleLogin, { GoogleLogout } from "react-google-login";
 import "../../utilities.css";
 import "./Lobby.css";
 import { get, post } from "../../utilities";
+import CreateRoom from "./CreateRoom.js"
 
 //TODO: REPLACE WITH YOUR OWN CLIENT_ID
 
@@ -14,6 +15,7 @@ class Lobby extends Component {
     let theState = props.state;
     theState.cardrooms = [];
     theState.selected_room = "";
+    theState.createGroup = false;
     this.state = theState;
 
     this.loadGames = () => {
@@ -26,10 +28,21 @@ class Lobby extends Component {
       })
     }
 
-    this.createRoom = () => {
-      post('/api/cardroom', {title: "Test", description: "first game test!", username: this.state.username, name: this.state.name, creator_id: this.state.userId}).then((cardroom) => {
+    this.joinRoom = () => {
+
+    }
+
+    this.createRoom = (title, description) => {
+      post('/api/cardroom', {title: title, description: description, username: this.state.username, name: this.state.name, creator_id: this.state.userId}).then((cardroom) => {
         console.log(JSON.stringify(cardroom))
       })
+    }
+
+    this.updateCreateGroup = () => {
+      this.setState((prevState) => ({
+        createGroup: !prevState.createGroup
+      }))
+      console.log(this.state.createGroup)
     }
   }
 
@@ -39,6 +52,9 @@ class Lobby extends Component {
   }
 
   render() {
+
+
+
     return (
         <div>
           <h1 className="lobby">Lobby</h1>
@@ -90,7 +106,11 @@ class Lobby extends Component {
             <button className="join" onClick = {this.loadGames}>Load Lobby!</button>
           </div>
 
+          <div className="bot">
+            <button className="join" onClick = {this.updateCreateGroup}>Create Room!</button>
+          </div>
 
+          {this.state.createGroup ? <CreateRoom cancelSubmit = {this.updateCreateGroup} createRoom = {this.createRoom}></CreateRoom> : <div></div>}
           
         </div>
     );
