@@ -52,19 +52,34 @@ class Lobby extends Component {
                 <th>Capacity</th>
               </tr>
             </thead>
-            {   
+            <tbody>
+              {   
                 this.state.cardrooms.map((cardroom) => {
                     return (
-                      <tbody>
-                        <tr>
-                          <td>{cardroom.title}</td>
-                          <td>{cardroom.host.username}</td>
-                          <td>{cardroom.players.length}/8</td>
-                        </tr>
-                      </tbody>
+                      <tr>
+                        <td>{cardroom.title}</td>
+                        <td>{cardroom.host.username}</td>
+                        <td>{cardroom.players.length}/8</td>
+                      </tr>
                     )
                 })
-            }
+              }
+              <tr>
+                <td>another</td>
+                <td>anOTHER!</td>
+                <td>2/8</td>
+              </tr>
+              <tr>
+                <td>another</td>
+                <td>anOTHER!</td>
+                <td>2/8</td>
+              </tr>
+              <tr>
+                <td>another</td>
+                <td>anOTHER!</td>
+                <td>2/8</td>
+              </tr>
+            </tbody>
           </table>
 
           <div className="bot">
