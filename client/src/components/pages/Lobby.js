@@ -68,7 +68,10 @@ class Lobby extends Component {
   render() {
     return (
         <div>
-          <h1 className="header">Lobby</h1>
+          <div className="top">
+            <h1 className="header">Lobby</h1>
+            <button className="join" onClick = {this.updateCreateGroup}>Create Room!</button>
+          </div>
           <hr className="hr"></hr>
 
           <div className="lobby">
@@ -103,14 +106,11 @@ class Lobby extends Component {
                   <h3 className="current">Current Players</h3>
                   <ul className="playerList">
                     <li>{this.state.showInfo[1].host.username}</li>
-                    {this.state.showInfo[1].players.map((user) => {
+                    {/* {this.state.showInfo[1].players.map((user) => {
                       return (
                         <li>{user}</li>
-                        // <li>{get("/api/user", {userid: user}).then((user) => {
-                        //   return (user.username)
-                        // })}</li>
                       )
-                    })}
+                    })} */}
                   </ul>
                   <button className="join" onClick = {this.joinRoom}>Join!</button>
                 </div> : null }
@@ -135,10 +135,6 @@ class Lobby extends Component {
 
           <div className="bot">
             <button className="join" onClick = {this.loadGames}>Load Lobby!</button>
-          </div>
-
-          <div className="bot">
-            <button className="join" onClick = {this.updateCreateGroup}>Create Room!</button>
           </div>
 
           <div className = 'chat'>
