@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
+import "./CreateRoom.css";
 
 
 export default function CreateRoom(props) {
@@ -26,35 +27,29 @@ export default function CreateRoom(props) {
       <div className = "Full">
       <div className="Login">  
         <form onSubmit={handleSubmit}>
-        
-          {/* <div className = ""> */}
+          <h1>Create</h1>
+          <hr></hr>
           <div className="right">
-          <FormGroup controlId="email" bsSize="large" className="form-inline" >
-            <FormLabel>Room Name: &nbsp;&nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp; </FormLabel>
-            <FormControl
-              type="title"
-              value={title}
-              onChange={e => setTitle(e.target.value)}
-            />
-          </FormGroup>
-          <FormGroup controlId="password" bsSize="large" className="form-inline">
-            <FormLabel>Description: &nbsp; &nbsp;</FormLabel>
-            <FormControl
-              value={description}
-              onChange={e => setDescription(e.target.value)}
-              type="description"
-            />
-          </FormGroup>
+            <FormGroup controlId="email" bsSize="large" className="form-inline" >
+              <FormLabel>Room Name: &nbsp; &nbsp;</FormLabel>
+              <FormControl
+                type="title"
+                value={title}
+                onChange={e => setTitle(e.target.value)}
+              />
+            </FormGroup>
+            <FormGroup controlId="password" bsSize="large" className="form-inline">
+              <FormLabel>Description: &nbsp; &nbsp;</FormLabel>
+              <FormControl
+                value={description}
+                onChange={e => setDescription(e.target.value)}
+                type="description"
+              />
+            </FormGroup>
           </div>
           <br></br>
           <Button block bsSize="large" disabled={!validateForm()} type="submit" className="submitbutton">
             Create!
-          </Button>
-        </form>
-
-        <form onSubmit = {cancelSubmit}>
-          <Button block bsSize="large" type="submit" className="submitbutton">
-            Cancel
           </Button>
         </form>
         

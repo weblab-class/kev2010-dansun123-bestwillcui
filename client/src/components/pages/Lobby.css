@@ -1,17 +1,18 @@
 .top {
     display: flex;
     justify-content: space-between;
+    margin: 0 3rem;
+    padding: 0;
 }
 
 .header {
-    padding: 0 1rem;
     margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 .hr {
-    width: 90%;
-    margin: 0;
-    text-align: right;
+    width: 95%;
+    margin: auto;
 }
 
 .lobby {
@@ -23,10 +24,10 @@
 table {
     height: 40%;
     left: 10%;
-    margin: 20px 20px;
+    margin: 1rem 0;
     overflow-y: scroll;
     position: static;
-    width: 60%;
+    width: 40%;
 }
 
 thead th {
@@ -41,6 +42,7 @@ tr {
     background: #f4f7f8;
     border-bottom: 1px solid #FFF;
     margin-bottom: 5px;
+    padding: 0;
 }
 
 th, td {
@@ -63,12 +65,19 @@ th, td {
 
 .info {
     background-color: white;
-    padding: 0 100px;
-    margin-top: 20px;
+    padding: 0;
+    margin: 1rem 0;
     display: flex;
     flex-flow: column wrap;
     align-items: center;
-    border-radius: 20%;
+    /* border-radius: 10%; */
+}
+
+.roomTitle {
+    background-color: #0e1725;
+    color: white;
+    padding: 1rem 12rem;
+    margin: 0;
 }
 
 .current {
@@ -86,6 +95,19 @@ th, td {
     width: 15rem;
 }
 
+.online {
+    display: flex;
+    flex-flow: column wrap;
+    text-align: center;
+    align-items: center;
+    padding: 0 100px;
+}
+
+.userList {
+    text-decoration: underline;
+    margin-bottom: 1rem;
+}
+
 .bot {
     display: flex;
     justify-content: center;
@@ -100,9 +122,46 @@ th, td {
     display: inline-block;
     font-size: 18px;
     border-radius: 12px;
-    margin: 1rem 1rem;
+    margin: 0.75rem 0.75rem;
 }
 
 .join:hover {
     background-color: #23e7d4;
+}
+
+/* The Modal (background) */
+.modal {
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 25%;
+    border-radius: 20px; 
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }

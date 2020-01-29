@@ -35,7 +35,8 @@ class Chat extends Component {
   render() {
     return (
       <div className="u-flexColumn Chat-container">
-        <h3>Chatting with {this.props.data.recipient.name}</h3>
+        {/* <h3>Chatting with {this.props.data.recipient.name}</h3> */}
+        <h2 className="welcome">Welcome to Global Chat!</h2>
         <div className="Chat-historyContainer">
           {this.props.data.messages.map((m, i) => (
             <SingleMessage message={m} key={i} />

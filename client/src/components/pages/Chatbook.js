@@ -107,14 +107,14 @@ class Chatbook extends Component {
     return (
       <>
         <div className="u-flex u-relative Chatbook-container">
-          <div className="Chatbook-userList">
+          {/* <div className="Chatbook-userList">
             <ChatList
               setActiveUser={this.setActiveUser}
               userId={this.props.userId}
               users={this.state.activeUsers}
               active={this.state.activeChat.recipient}
             />
-          </div>
+          </div> */}
           <div className="Chatbook-chatContainer u-relative">
             <Chat data={this.state.activeChat} />
           </div>

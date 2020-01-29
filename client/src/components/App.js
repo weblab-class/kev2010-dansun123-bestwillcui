@@ -97,7 +97,7 @@ class App extends Component {
       <div>
         <navbar>
           <ul className="topbar">
-            <li className="title"><a href="/lobby">CardBox</a></li>
+            <li className="title"><a href="/">CardBox</a></li>
             <ul className="navigation">
               {/* <li className="tab"><a href="./lobby">Lobby</a></li> */}
               <li className="tab"><a href="./profile">Profile</a></li>
@@ -114,8 +114,8 @@ class App extends Component {
 
         <Router>
           <div>
-            <Link to="/cardroom" className="nav">CardRoom 1</Link>
-            <Link to="/" className="nav">Lobby</Link>
+            {/* <Link to="/cardroom" className="nav">CardRoom 1</Link> */}
+            {/* <Link to="/" className="nav">Lobby</Link> */}
             <Switch>
               <Lobby
                 exact path="/"
@@ -140,7 +140,7 @@ class App extends Component {
 
     return (
       <div>
-          {this.state.userId ? privateContent: publicContent}
+          {!this.state.userId ? privateContent: publicContent}
       </div>
     );
   }

@@ -21,7 +21,6 @@ class Lobby extends Component {
     this.state = theState;
     this.state.showInfo = [false, null];
 
-
     this.loadGames = () => {
       console.log("HOLD UP"+ this.state.username)
       get('/api/cardrooms').then((cardrooms) => {
@@ -58,6 +57,7 @@ class Lobby extends Component {
         this.setState({ showInfo: [true, room]});
       }
     }
+
   }
 
   componentDidMount() {
@@ -70,11 +70,35 @@ class Lobby extends Component {
         <div>
           <div className="top">
             <h1 className="header">Lobby</h1>
-            <button className="join" onClick = {this.updateCreateGroup}>Create Room!</button>
+            <button className="join" onClick={() => this.updateCreateGroup()}>Create Room!</button>
           </div>
           <hr className="hr"></hr>
 
+          { this.state.createGroup ?
+            <div class="modal">
+              <div class="modal-content">
+                <span class="close" onClick={() => this.updateCreateGroup()}>&times;</span>
+                {this.state.createGroup ? <CreateRoom cancelSubmit = {this.updateCreateGroup} createRoom = {this.createRoom}></CreateRoom> : <div></div>}
+              </div>
+            </div> : null}
+          
+
           <div className="lobby">
+            <table className="users">
+                <thead>
+                  <tr>
+                    <th>Online Users</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Kevin Jiang (donKAY)</td>
+                  </tr>
+                  <tr>
+                    <td>Daniel Sun (XxcardmasterxX)</td>
+                  </tr>
+                </tbody>
+              </table>
             <table>
               <thead>
                 <tr>
@@ -99,21 +123,55 @@ class Lobby extends Component {
             </table>
             
             <div className="additional">
+              {/* {this.state.showInfo[0] ?
+                <table>
+                  <thead>
+                    <tr>
+                      <th className="roomName">{this.state.showInfo[1].title}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="roomInfo">
+                        <p>{this.state.showInfo[1].description}</p>
+                        <h3 className="current">Current Players</h3>
+                        <ul className="playerList">
+                          {this.state.showInfo[1].players.map((user) => {
+                            return <li>{user.username}</li>
+                          })}
+                        </ul>
+                        <button className="join" onClick = {this.joinRoom}>Join!</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table> : null} */}
+
               { this.state.showInfo[0] ? 
                 <div className="info">
-                  <h1>{this.state.showInfo[1].title}</h1>
+                  <h1 className="roomTitle">{this.state.showInfo[1].title}</h1>
                   <p>{this.state.showInfo[1].description}</p>
                   <h3 className="current">Current Players</h3>
                   <ul className="playerList">
-                    <li>{this.state.showInfo[1].host.username}</li>
                     {this.state.showInfo[1].players.map((user) => {
                       return <li>{user.username}</li>
                     })}
                   </ul>
-                  <button className="join" onClick = {this.joinRoom}>Join!</button>
+                  {/* <button className="join" onClick = {this.joinRoom}>Join!</button> */}
+                  <form action="/cardroom">
+                    <button className="join">Join!</button>
+                  </form>
                 </div> : null }
 
-              <table className="users">
+              <div className = 'chat'>
+                <Chatbook userId={this.state.userId}/>
+              </div>
+              
+              {/* <div className="online">
+                <h1 className="userList">Online Users</h1>
+                <p>Kevin Jiang (donKAY)</p>
+                <p>Daniel Sun (XxcardmasterxX)</p>
+              </div> */}
+              {/* <table className="users">
                 <thead>
                   <tr>
                     <th>Online Users</th>
@@ -127,20 +185,13 @@ class Lobby extends Component {
                     <td>Daniel Sun</td>
                   </tr>
                 </tbody>
-              </table>
+              </table> */}
             </div>
           </div>
 
-          <div className="bot">
+          {/* <div className="bot">
             <button className="join" onClick = {this.loadGames}>Load Lobby!</button>
-          </div>
-
-          <div className = 'chat'>
-            <Chatbook userId={this.state.userId}/>
-          </div>
-
-          {this.state.createGroup ? <CreateRoom cancelSubmit = {this.updateCreateGroup} createRoom = {this.createRoom}></CreateRoom> : <div></div>}
-          
+          </div> */}
         </div>
     );
   }

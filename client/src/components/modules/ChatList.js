@@ -20,7 +20,7 @@ class ChatList extends Component {
   render() {
     return (
       <>
-        <h3>Open Chats</h3>
+        {/* <h3>Open Chats</h3> */}
         {this.props.users
           .filter((user) => user._id !== this.props.userId)
           .map((user, i) => (
