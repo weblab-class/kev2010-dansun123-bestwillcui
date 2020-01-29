@@ -6,6 +6,7 @@ import "./Lobby.css";
 import { get, post } from "../../utilities";
 import CreateRoom from "../modules/CreateRoom.js"
 import Chatbook from "./Chatbook.js"
+import { Collection, mongo } from "mongoose";
 
 
 class Lobby extends Component {
@@ -18,6 +19,8 @@ class Lobby extends Component {
     theState.selected_room = "";
     theState.createGroup = false;
     this.state = theState;
+    this.state.showInfo = [false, null];
+
 
     this.loadGames = () => {
       console.log("HOLD UP"+ this.state.username)
@@ -47,15 +50,14 @@ class Lobby extends Component {
       }))
       console.log(this.state.createGroup)
     }
-  }
 
-  showRoomInfo = (cardroom) => {
-    return (
-      <div>
-        <h1>{cardroom.title}</h1>
-        <p>{cardroom.description}</p>
-      </div>
-    );
+    this.showRoomInfo = (room) => {
+      if (this.state.showInfo[0]) {
+        this.setState({ showInfo: [false, null] });
+      } else {
+        this.setState({ showInfo: [true, room]});
+      }
+    }
   }
 
   componentDidMount() {
@@ -64,7 +66,6 @@ class Lobby extends Component {
   }
 
   render() {
-
     return (
         <div>
           <h1 className="header">Lobby</h1>
@@ -83,7 +84,7 @@ class Lobby extends Component {
                 {   
                     this.state.cardrooms.map((cardroom) => {
                         return (
-                            <tr className="rooms">
+                            <tr className="rooms" onClick={() => this.showRoomInfo(cardroom)}>
                               <td>{cardroom.title}</td>
                               <td>{cardroom.host.username}</td>
                               <td>{cardroom.players.length}/8</td>
@@ -95,15 +96,24 @@ class Lobby extends Component {
             </table>
             
             <div className="additional">
-              <div className="info">
-                <h1>Test</h1>
-                <p>first game test!</p>
-                <h3 className="current">Current Players</h3>
-                <ul className="playerList">
-                  <li>donKAY</li>
-                  <li>dansun</li>
-                </ul>
-              </div>
+              { this.state.showInfo[0] ? 
+                <div className="info">
+                  <h1>{this.state.showInfo[1].title}</h1>
+                  <p>{this.state.showInfo[1].description}</p>
+                  <h3 className="current">Current Players</h3>
+                  <ul className="playerList">
+                    <li>{this.state.showInfo[1].host.username}</li>
+                    {this.state.showInfo[1].players.map((user) => {
+                      return (
+                        <li>{user}</li>
+                        // <li>{get("/api/user", {userid: user}).then((user) => {
+                        //   return (user.username)
+                        // })}</li>
+                      )
+                    })}
+                  </ul>
+                  <button className="join" onClick = {this.joinRoom}>Join!</button>
+                </div> : null }
 
               <table className="users">
                 <thead>
@@ -121,10 +131,6 @@ class Lobby extends Component {
                 </tbody>
               </table>
             </div>
-          </div>
-
-          <div className="bot">
-            <button className="join" onClick = {this.joinRoom}>Join!</button>
           </div>
 
           <div className="bot">
