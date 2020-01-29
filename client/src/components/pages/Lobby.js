@@ -49,40 +49,82 @@ class Lobby extends Component {
     }
   }
 
+  showRoomInfo = (cardroom) => {
+    return (
+      <div>
+        <h1>{cardroom.title}</h1>
+        <p>{cardroom.description}</p>
+      </div>
+    );
+  }
+
   componentDidMount() {
     // remember -- api calls go here!
     this.loadGames()
   }
 
   render() {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 41d0dbfe6ed34c521d334b66ea9ce592193736d3
     return (
         <div>
-          <h1 className="lobby">Lobby</h1>
+          <h1 className="header">Lobby</h1>
           <hr className="hr"></hr>
 
-          <table>
-            <thead>
-              <tr>
-                <th>Room</th>
-                <th scope="col">Host</th>
-                <th>Capacity</th>
-              </tr>
-            </thead>
-            {   
-                this.state.cardrooms.map((cardroom) => {
-                    return (
-                      <tbody>
-                        <tr>
-                          <td>{cardroom.title}</td>
-                          <td>{cardroom.host.username}</td>
-                          <td>{cardroom.players.length}/8</td>
-                        </tr>
-                      </tbody>
-                    )
-                })
-            }
-          </table>
+          <div className="lobby">
+            <table>
+              <thead>
+                <tr>
+                  <th>Room</th>
+                  <th scope="col">Host</th>
+                  <th>Capacity</th>
+                </tr>
+              </thead>
+              <tbody>
+                {   
+                    this.state.cardrooms.map((cardroom) => {
+                        return (
+                            <tr className="rooms">
+                              <td>{cardroom.title}</td>
+                              <td>{cardroom.host.username}</td>
+                              <td>{cardroom.players.length}/8</td>
+                            </tr>
+                        )
+                    })
+                }
+              </tbody>
+            </table>
+            
+            <div className="additional">
+              <div className="info">
+                <h1>Test</h1>
+                <p>first game test!</p>
+                <h3 className="current">Current Players</h3>
+                <ul className="playerList">
+                  <li>donKAY</li>
+                  <li>dansun</li>
+                </ul>
+              </div>
+
+              <table className="users">
+                <thead>
+                  <tr>
+                    <th>Online Users</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Kevin Jiang</td>
+                  </tr>
+                  <tr>
+                    <td>Daniel Sun</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
 
           <div className="bot">
             <button className="join" onClick = {this.joinRoom}>Join!</button>
