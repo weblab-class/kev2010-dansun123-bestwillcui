@@ -106,11 +106,9 @@ class Lobby extends Component {
                   <h3 className="current">Current Players</h3>
                   <ul className="playerList">
                     <li>{this.state.showInfo[1].host.username}</li>
-                    {/* {this.state.showInfo[1].players.map((user) => {
-                      return (
-                        <li>{user}</li>
-                      )
-                    })} */}
+                    {this.state.showInfo[1].players.map((user) => {
+                      return <li>{user.username}</li>
+                    })}
                   </ul>
                   <button className="join" onClick = {this.joinRoom}>Join!</button>
                 </div> : null }
