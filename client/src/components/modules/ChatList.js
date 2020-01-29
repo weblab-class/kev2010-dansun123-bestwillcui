@@ -21,7 +21,7 @@ class ChatList extends Component {
     return (
       <>
         {/* <h3>Open Chats</h3> */}
-        {this.props.users
+        {/* {this.props.users
           .filter((user) => user._id !== this.props.userId)
           .map((user, i) => (
             <SingleUser
@@ -30,7 +30,7 @@ class ChatList extends Component {
               user={user}
               active={user === this.props.active}
             />
-          ))}
+          ))} */}
       </>
     );
   }

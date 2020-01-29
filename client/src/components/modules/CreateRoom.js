@@ -27,7 +27,7 @@ export default function CreateRoom(props) {
       <div className = "Full">
       <div className="Login">  
         <form onSubmit={handleSubmit}>
-          <h1>Create</h1>
+          <h1>New Room</h1>
           <hr></hr>
           <div className="right">
             <FormGroup controlId="email" bsSize="large" className="form-inline" >

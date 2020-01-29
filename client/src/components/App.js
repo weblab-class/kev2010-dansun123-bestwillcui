@@ -3,8 +3,9 @@ import { Link, Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 import NotFound from "./pages/NotFound.js";
 import CardRoom from "./pages/CardRoom.js";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
-import Lobby from "./pages/Lobby.js"
-import Profile from "./pages/Profile.js"
+import Lobby from "./pages/Lobby.js";
+import Profile from "./pages/Profile.js";
+// import Info from "./page/Info.js";
 
 import "./App.css";
 
@@ -89,7 +90,7 @@ class App extends Component {
         </ul>
 
         <h1 className="prompt">Welcome to CardBox!</h1>
-        <h2 className="prompt">Login to play card games with other users!</h2>
+        <h2 className="prompt">Login to play sandbox card games with other users!</h2>
       </div>
     )
 
@@ -97,9 +98,9 @@ class App extends Component {
       <div>
         <navbar>
           <ul className="topbar">
-            <li className="title"><a href="/">CardBox</a></li>
+            <li className="title"><a href="./">CardBox</a></li>
             <ul className="navigation">
-              {/* <li className="tab"><a href="./lobby">Lobby</a></li> */}
+              {/* <li className="tab"><a href="./info">Info</a></li> */}
               <li className="tab"><a href="./profile">Profile</a></li>
               <li><a href="#">
                 <GoogleLogout
@@ -126,12 +127,15 @@ class App extends Component {
                 userId={this.state.userId}
                 username = {this.state.username}
               />
+              {/* <Info
+                exact path="/info"
+              /> */}
               <Profile
                 exact path="/profile"
                 state = {this.state}
                 updateUsername = {this.updateUsername}
               />
-              <NotFound default />
+              <NotFound default/>
             </Switch>
           </div>
         </Router>

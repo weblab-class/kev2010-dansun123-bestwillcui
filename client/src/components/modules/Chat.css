@@ -1,9 +1,13 @@
 .Chat-container {
-  height: 95%;
+  height: 90%;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .Chat-newContainer {
   width: 100%;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 .Chat-historyContainer {
@@ -12,6 +16,7 @@
 }
 
 .welcome {
+  margin-top: 1rem;
   text-decoration: underline;
   text-align: center;
 }
