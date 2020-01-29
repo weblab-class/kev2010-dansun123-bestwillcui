@@ -26,7 +26,6 @@ class Profile extends Component {
   }
 
   handleUsernameSubmit = (event) => {
-    alert(this.state.tempName+this.state.username)
     post("/api/username", {userId: this.state.userId, username: this.state.tempName}).then((res) => {
         this.setState({
             username: res.username

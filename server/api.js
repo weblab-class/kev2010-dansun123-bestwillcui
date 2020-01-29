@@ -106,6 +106,27 @@ router.post("/image", (req, res) => {
   });
 });
 
+router.get("/chat", (req, res) => {
+  const query = { "recipient._id": "ALL_CHAT" };
+  Message.find(query).then((messages) => res.send(messages));
+});
+
+router.post("/message", auth.ensureLoggedIn, (req, res) => {
+  console.log(`Received a chat message from ${req.user.name}: ${req.body.content}`);
+
+  // insert this message into the database
+  const message = new Message({
+    recipient: req.body.recipient,
+    sender: {
+      _id: req.user._id,
+      name: req.user.name,
+    },
+    content: req.body.content,
+  });
+  message.save();
+  socket.getIo().emit("message", message);
+});
+
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

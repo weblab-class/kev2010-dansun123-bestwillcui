@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link, Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 import NotFound from "./pages/NotFound.js";
-import Skeleton from "./pages/Skeleton.js";
 import CardRoom from "./pages/CardRoom.js";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 import Lobby from "./pages/Lobby.js"

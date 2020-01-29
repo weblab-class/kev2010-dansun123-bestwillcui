@@ -19,15 +19,15 @@ class CardRoom extends Component {
 
   render() {
     return (
-    //   <div className="CardRoom">
-    //     <div className="CardRoom-body">
-    //       <WarGame> </WarGame>
-    //     </div>
-    //   </div>
+      // <div className="CardRoom">
+      //   <div className="CardRoom-body">
+      //     <WarGame> </WarGame>
+      //   </div>
+      // </div>
       <div>
         <Sandbox></Sandbox>
       </div>
-    );
+    )
   }
 }
 

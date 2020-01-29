@@ -4,15 +4,16 @@ import GoogleLogin, { GoogleLogout } from "react-google-login";
 import "../../utilities.css";
 import "./Lobby.css";
 import { get, post } from "../../utilities";
-import CreateRoom from "./CreateRoom.js"
+import CreateRoom from "../modules/CreateRoom.js"
+import Chatbook from "./Chatbook.js"
 
-//TODO: REPLACE WITH YOUR OWN CLIENT_ID
 
 class Lobby extends Component {
   constructor(props) {
     super(props);
     // Initialize Default State
     let theState = props.state;
+    theState.userlist = [theState.userId];  // add everyone online into this somewhow using sockets
     theState.cardrooms = [];
     theState.selected_room = "";
     theState.createGroup = false;
@@ -29,7 +30,9 @@ class Lobby extends Component {
     }
 
     this.joinRoom = () => {
+      get('/api/cardroom', {room: this.state.selected_room}).then((cardroom) => {
 
+      })
     }
 
     this.createRoom = (title, description) => {
@@ -52,8 +55,6 @@ class Lobby extends Component {
   }
 
   render() {
-
-
 
     return (
         <div>
@@ -93,6 +94,10 @@ class Lobby extends Component {
 
           <div className="bot">
             <button className="join" onClick = {this.updateCreateGroup}>Create Room!</button>
+          </div>
+
+          <div className = 'chat'>
+            <Chatbook userId={this.state.userId}/>
           </div>
 
           {this.state.createGroup ? <CreateRoom cancelSubmit = {this.updateCreateGroup} createRoom = {this.createRoom}></CreateRoom> : <div></div>}

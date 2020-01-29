@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './WarGame.css';
-import CadrDeckImage from './images/deck.png';
-import CadrCover from './images/cover.png';
+import CadrDeckImage from '../modules/images/deck.png';
+import CadrCover from '../modules/images/cover.png';
 
 
 class WarGame extends Component {
