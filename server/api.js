@@ -67,7 +67,7 @@ router.post("/cardroom", (req, res) => {
     creator_id: req.body.creator_id,
     host: {username: req.body.username, name: req.body.name},
     cardroom_id: req.body.creator_id+req.body.title,
-    players: [req.body.creator_id],
+    players: [{username: req.body.username, name: req.body.name, id: req.body.creator_id}],
   }) 
   newCardroom.save().then((cardroom) => res.send(cardroom))
 });

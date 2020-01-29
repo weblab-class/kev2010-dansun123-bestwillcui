@@ -58,6 +58,13 @@ class Lobby extends Component {
         this.setState({ showInfo: [true, room]});
       }
     }
+
+    this.testFetch = (userid) => {
+      get("/api/user", {userid: userid}).then((user) => {
+          console.log(user.username)
+        })
+        console.log("FUC")
+    }
   }
 
   componentDidMount() {
@@ -104,12 +111,7 @@ class Lobby extends Component {
                   <ul className="playerList">
                     <li>{this.state.showInfo[1].host.username}</li>
                     {this.state.showInfo[1].players.map((user) => {
-                      return (
-                        <li>{user}</li>
-                        // <li>{get("/api/user", {userid: user}).then((user) => {
-                        //   return (user.username)
-                        // })}</li>
-                      )
+                      return <li>{user.username}</li>
                     })}
                   </ul>
                   <button className="join" onClick = {this.joinRoom}>Join!</button>
@@ -139,6 +141,10 @@ class Lobby extends Component {
 
           <div className="bot">
             <button className="join" onClick = {this.updateCreateGroup}>Create Room!</button>
+          </div>
+
+          <div className="bot">
+            <button className="testUser" onClick = {this.testFetch}>Test!</button>
           </div>
 
           <div className = 'chat'>
