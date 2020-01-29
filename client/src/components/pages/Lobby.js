@@ -64,10 +64,7 @@ class Lobby extends Component {
   }
 
   render() {
-<<<<<<< HEAD
 
-=======
->>>>>>> 41d0dbfe6ed34c521d334b66ea9ce592193736d3
     return (
         <div>
           <h1 className="header">Lobby</h1>

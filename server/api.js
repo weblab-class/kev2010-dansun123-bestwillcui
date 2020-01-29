@@ -107,7 +107,20 @@ router.post("/image", (req, res) => {
 });
 
 router.get("/chat", (req, res) => {
-  const query = { "recipient._id": "ALL_CHAT" };
+  let query;
+  if (req.query.recipient_id === "ALL_CHAT") {
+    // get any message sent by anybody to ALL_CHAT
+    query = { "recipient._id": "ALL_CHAT" };
+  } else {
+    // get messages that are from me->you OR you->me
+    query = {
+      $or: [
+        { "sender._id": req.user._id, "recipient._id": req.query.recipient_id },
+        { "sender._id": req.query.recipient_id, "recipient._id": req.user._id },
+      ],
+    };
+  }
+
   Message.find(query).then((messages) => res.send(messages));
 });
 
@@ -124,9 +137,18 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
     content: req.body.content,
   });
   message.save();
-  socket.getIo().emit("message", message);
+
+  if (req.body.recipient._id == "ALL_CHAT") {
+    socket.getIo().emit("message", message);
+  } else {
+    socket.getSocketFromUserID(req.body.recipient._id).emit("message", message);
+    socket.getSocketFromUserID(req.user._id).emit("message", message);
+  }
 });
 
+router.get("/activeUsers", (req, res) => {
+  res.send({ activeUsers: socket.getAllConnectedUsers() });
+});
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

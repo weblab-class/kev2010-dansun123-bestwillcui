@@ -9,7 +9,7 @@ import "./SingleUser.css";
  * Proptypes
  * @param {UserObject[]} users to display
  * @param {UserObject} active user in chat
- * @param {UserObject} user current logged in user
+ * @param {string} userId id of current logged in user
  * @param {(UserObject) => ()} setActiveUser function that takes in user, sets it to active
  */
 class ChatList extends Component {
@@ -18,7 +18,21 @@ class ChatList extends Component {
   }
 
   render() {
-    return <></>;
+    return (
+      <>
+        <h3>Open Chats</h3>
+        {this.props.users
+          .filter((user) => user._id !== this.props.userId)
+          .map((user, i) => (
+            <SingleUser
+              key={i}
+              setActiveUser={this.props.setActiveUser}
+              user={user}
+              active={user === this.props.active}
+            />
+          ))}
+      </>
+    );
   }
 }
 
