@@ -57,7 +57,7 @@ class Chatbook extends Component {
   }
 
   componentDidMount() {
-    document.title = "Chatbook";
+    document.title = "Cardbox";
 
     this.loadMessageHistory(ALL_CHAT);
 
