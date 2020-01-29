@@ -76,14 +76,13 @@ class Profile extends Component {
     }
 
     return (
-      <>
-        <div
-          className="Profile-avatarContainer"
-        >
-          <div className="Profile-avatar">
-              <img src = {this.state.image}></img>
+      <div>
+        <div className="Profile-avatarContainer">
+          <div>
+              <img className="Profile-avatar" src = {this.state.image}></img>
           </div>
         </div>
+
         <h1 className="Profile-name u-textCenter">{this.state.username}</h1>
         <hr className="Profile-line" />
         <div className="u-flex">
@@ -93,50 +92,52 @@ class Profile extends Component {
               {this.state.profile}
             </div>
           </div>
+
           <div className="Profile-subContainer u-textCenter">
             <h4 className="Profile-subTitle">My Games</h4>
             <div id="favorite-cat">
                 {this.state.games}
             </div>
           </div>
-            <form onSubmit={this.handleUsernameSubmit}>
-                <label>
-                Change Username
-                <input 
-                    type="text" 
-                    name="username"
-                    value={this.state.tempName} 
-                    onChange={this.handleUsernameChange} />
-                </label>
-                <input type="submit" value="Set Username" />
-            </form>
 
-            <form onSubmit={this.handleProfileSubmit}>
-                <label>
-                Change Profile
-                <input 
-                    type="text" 
-                    name="profile"
-                    value={this.state.tempprofile} 
-                    onChange={this.handleProfileChange} />
-                </label>
-                <input type="submit" value="Set Profile" />
-            </form>
+          <form onSubmit={this.handleUsernameSubmit}>
+              <label>
+              Change Username
+              <input 
+                  type="text" 
+                  name="username"
+                  value={this.state.tempName} 
+                  onChange={this.handleUsernameChange} />
+              </label>
+              <input type="submit" value="Set Username" />
+          </form>
 
-            <form onSubmit={this.handleImageSubmit}>
-                <label>
-                Upload Image Link
-                <input 
-                    type="text" 
-                    name="image"
-                    value={this.state.tempImage} 
-                    onChange={this.handleImageChange} />
-                </label>
-                <input type="submit" value="Set Image" />
-            </form>
-            <button onClick = {console.log(JSON.stringify(this.state))}>Click me</button>
+          <form onSubmit={this.handleProfileSubmit}>
+              <label>
+              Change Profile
+              <input 
+                  type="text" 
+                  name="profile"
+                  value={this.state.tempprofile} 
+                  onChange={this.handleProfileChange} />
+              </label>
+              <input type="submit" value="Set Profile" />
+          </form>
+
+          <form onSubmit={this.handleImageSubmit}>
+              <label>
+              Upload Image Link
+              <input 
+                  type="text" 
+                  name="image"
+                  value={this.state.tempImage} 
+                  onChange={this.handleImageChange} />
+              </label>
+              <input type="submit" value="Set Image" />
+          </form>
+          <button onClick = {console.log(JSON.stringify(this.state))}>Click me</button>
         </div>
-      </>
+      </div>
     );
   }
 }
