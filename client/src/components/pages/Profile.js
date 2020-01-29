@@ -100,7 +100,8 @@ class Profile extends Component {
             </div>
           </div>
 
-          <form onSubmit={this.handleUsernameSubmit}>
+          <div id='forms'>
+            <form onSubmit={this.handleUsernameSubmit}>
               <label>
               Change Username
               <input 
@@ -135,7 +136,11 @@ class Profile extends Component {
               </label>
               <input type="submit" value="Set Image" />
           </form>
-          <button onClick = {console.log(JSON.stringify(this.state))}>Click me</button>
+
+          </div>
+
+          
+{/*    <button onClick = {console.log(JSON.stringify(this.state))}>Click me</button> --> */}
         </div>
       </div>
     );

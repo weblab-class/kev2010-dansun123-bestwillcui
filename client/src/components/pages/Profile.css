@@ -4,12 +4,13 @@
   
 .Profile-avatar {
   /* make it responsive */
-  max-width: 100%;
+  max-width: 100px;
+  max-height: 100px;
   width: 50%;
   height: 50%;
   display: block;
   /* div height to be the same as width*/
-  padding-top: 100%;
+  padding-top: 50px;
 
   /* make it a circle */
   border-radius: 50%;
@@ -52,5 +53,12 @@
 .Profile-subTitle {
   font-weight: 300;
   font-size: 24px;
-  margin: var(--m) var(--s);
+  /* margin: var(--m) var(--s); */
+  margin-left: 50px;
+}
+
+#forms {
+  margin-right: 100px;
+  margin-top: 20px;
+  line-height: 0px;
 }
