@@ -1,4 +1,4 @@
-.lobby {
+.header {
     padding: 0 1rem;
     margin-bottom: 0;
 }
@@ -7,13 +7,19 @@
     width: 98%;
 }
 
+.lobby {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
 table {
     height: 40%;
     left: 10%;
-    margin: 20px auto;
+    margin: 20px 20px;
     overflow-y: scroll;
     position: static;
-    width: 80%;
+    width: 60%;
 }
 
 thead th {
@@ -34,12 +40,44 @@ th, td {
     font-weight: 400;
     font-size: 16px;
     padding: 20px;
-    text-align: left;
+    text-align: center;
     width: 33.3333%;
 }
 
-tr:hover {
+.rooms:hover {
     background-color: lightgray;
+}
+
+.additional {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.info {
+    background-color: white;
+    padding: 0 100px;
+    margin-top: 20px;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    border-radius: 20%;
+}
+
+.current {
+    text-decoration: underline;
+    margin-bottom: 0;
+}
+
+.playerList {
+    list-style: decimal;
+    text-align: left;
+    padding-left: 1em;
+}
+
+.users {
+    width: 75%;
+    margin-left: 0;
 }
 
 .bot {

@@ -141,7 +141,7 @@ class App extends Component {
 
     return (
       <div>
-          {this.state.userId ? privateContent: publicContent}
+          {!this.state.userId ? privateContent: publicContent}
       </div>
     );
   }
